@@ -18,9 +18,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    m_Scene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(m_Scene);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    ui->graphicsView->resize(this->width()-20, this->height()-100);
+    ui->graphicsView->scene()->setSceneRect(0,0, this->width()-20, this->height()-100);
+    QWidget::resizeEvent(event);
 }

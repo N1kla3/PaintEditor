@@ -14,7 +14,11 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-set(SOURCES MainWindow.h MainWindow.cpp)
+set(SOURCES
+        MainWindow.h
+        MainWindow.cpp
+        ULine.h
+        ULine.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 
