@@ -18,7 +18,9 @@ set(SOURCES
         MainWindow.h
         MainWindow.cpp
         ULine.h
-        ULine.cpp)
+        ULine.cpp
+        DrawManager.h
+        DrawManager.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 

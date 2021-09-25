@@ -3,13 +3,11 @@
 //
 
 #include "MainWindow.h"
-#include <QTabWidget>
 #include <QInputDialog>
 #include <QFileDialog>
-#include <QMessageBox>
-#include <QDir>
 #include <QTextStream>
 #include <QRandomGenerator>
+#include "DrawManager.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,8 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_Scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(m_Scene);
+    m_Scene = QSharedPointer<QGraphicsScene>::create();
+    ui->graphicsView->setScene(m_Scene.get());
+
+    m_DrawManager = std::make_unique<DrawManager>(m_Scene);
 }
 
 MainWindow::~MainWindow()

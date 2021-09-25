@@ -5,16 +5,18 @@
 #pragma once
 
 #include <QMainWindow>
+#include <memory>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class QGraphicsScene;
+class DrawManager;
 
 class MainWindow : public QMainWindow
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -22,12 +24,14 @@ public:
 
     virtual void resizeEvent(QResizeEvent* event) override;
 
-    QGraphicsScene* GetScene() const { return m_Scene; }
+    QSharedPointer<QGraphicsScene> GetScene() const { return m_Scene; }
 
 private:
     Ui::MainWindow *ui;
 
-    QGraphicsScene* m_Scene;
+    QSharedPointer<QGraphicsScene> m_Scene;
+
+    std::unique_ptr<DrawManager> m_DrawManager;
 };
 
 
