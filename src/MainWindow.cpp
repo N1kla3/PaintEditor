@@ -9,6 +9,7 @@
 #include <QRandomGenerator>
 #include "DrawManager.h"
 #include "ui_mainwindow.h"
+#include "ULine.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(m_Scene.get());
 
     m_DrawManager = std::make_unique<DrawManager>(m_Scene);
+    m_DrawManager->DrawLine(QPoint(), QPoint(), ELineAlgorithm::DDA);
 }
 
 MainWindow::~MainWindow()

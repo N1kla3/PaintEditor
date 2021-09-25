@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>469</height>
+    <width>596</width>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,7 +51,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>594</width>
+     <width>596</width>
      <height>21</height>
     </rect>
    </property>
@@ -92,7 +92,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSelect"/>
+   <addaction name="LineMode"/>
    <addaction name="actionNode"/>
    <addaction name="actionArrow"/>
    <addaction name="actionunoriented"/>
@@ -129,7 +129,7 @@
     <string>UnOri</string>
    </property>
   </action>
-  <action name="actionSelect">
+  <action name="LineMode">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -138,8 +138,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>:/picture/cursor.png</normaloff>
-     <normalon>:/Pictures/graph/cursor.png</normalon>:/picture/cursor.png</iconset>
+     <normaloff>../../../OneDrive/Изображения/meme.jpg</normaloff>../../../OneDrive/Изображения/meme.jpg</iconset>
    </property>
    <property name="text">
     <string>select</string>
@@ -244,7 +243,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../resource.qrc"/>
+  <include location="../Editor.qrc"/>
  </resources>
  <connections/>
 </ui>
