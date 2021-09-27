@@ -20,7 +20,11 @@ set(SOURCES
         ULine.h
         ULine.cpp
         DrawManager.h
-        DrawManager.cpp)
+        DrawManager.cpp
+        Mode.h
+        Mode.cpp
+        EditorAction.h
+        EditorAction.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 

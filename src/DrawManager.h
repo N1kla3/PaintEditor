@@ -5,6 +5,8 @@
 #pragma once
 
 #include <QWeakPointer>
+#include <memory>
+#include "Mode.h"
 
 class QGraphicsScene;
 class QGraphicsItem;
@@ -18,6 +20,9 @@ public:
     QGraphicsItem* DrawLine(QPoint start, QPoint end, ELineAlgorithm algorithm);
 
 private:
+
+    std::unique_ptr<Mode> m_Mode;
+
     QWeakPointer<QGraphicsScene> m_Scene;
 };
 
