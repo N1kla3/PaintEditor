@@ -23,6 +23,8 @@ set(SOURCES
         DrawManager.cpp
         Mode.h
         Mode.cpp
+        LineMode.h
+        LineMode.cpp
         EditorAction.h
         EditorAction.cpp)
 
