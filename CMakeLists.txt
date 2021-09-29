@@ -26,7 +26,9 @@ set(SOURCES
         LineMode.h
         LineMode.cpp
         EditorAction.h
-        EditorAction.cpp)
+        EditorAction.cpp
+        ActionGraphicsScene.h
+        ActionGraphicsScene.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 

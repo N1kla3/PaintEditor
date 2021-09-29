@@ -8,8 +8,11 @@
 #include <QTextStream>
 #include <QRandomGenerator>
 #include "DrawManager.h"
+#include "LineMode.h"
 #include "ui_mainwindow.h"
+#include "iostream"
 #include "ULine.h"
+#include "ActionGraphicsScene.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -17,11 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_Scene = QSharedPointer<QGraphicsScene>::create();
+    m_Scene = QSharedPointer<ActionGraphicsScene>::create();
     ui->graphicsView->setScene(m_Scene.get());
 
     m_DrawManager = std::make_unique<DrawManager>(m_Scene);
-    m_DrawManager->DrawLine(QPoint(), QPoint(), ELineAlgorithm::DDA);
+    //m_DrawManager->DrawLine(QPoint(), QPoint(), ELineAlgorithm::DDA);
+
+    connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
 }
 
 MainWindow::~MainWindow()
@@ -34,4 +39,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->graphicsView->resize(this->width()-20, this->height()-100);
     ui->graphicsView->scene()->setSceneRect(0,0, this->width()-20, this->height()-100);
     QWidget::resizeEvent(event);
+}
+
+void MainWindow::actionDDA_triggered()
+{
+    std::cout << "Action DDA triggered\n";
+    m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::DDA));
 }

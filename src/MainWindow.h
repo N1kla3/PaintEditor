@@ -32,6 +32,9 @@ private:
     QSharedPointer<QGraphicsScene> m_Scene;
 
     std::unique_ptr<DrawManager> m_DrawManager;
+
+private slots:
+    void actionDDA_triggered();
 };
 
 

@@ -4,6 +4,7 @@
 
 #include "DrawManager.h"
 #include <QGraphicsScene>
+#include "ActionGraphicsScene.h"
 #include "ULine.h"
 
 DrawManager::DrawManager(const QSharedPointer<QGraphicsScene>& scene)
@@ -11,15 +12,10 @@ DrawManager::DrawManager(const QSharedPointer<QGraphicsScene>& scene)
     m_Scene = scene;
 }
 
-QGraphicsItem *DrawManager::DrawLine(QPoint start, QPoint end, ELineAlgorithm algorithm)
-{
-    auto* line = new ULine(m_Scene.data(), algorithm);
-    line->setPos({200, 200});
-    m_Scene.lock()->addItem(line);
-    return line;
-}
-
 void DrawManager::SetMode(Mode* newMode)
 {
-    m_Mode.reset(newMode);
+    m_Mode.clear();
+    m_Mode = newMode;
+    auto* action_scene = qobject_cast<ActionGraphicsScene*>(m_Scene.data());
+    QObject::connect(action_scene, &ActionGraphicsScene::NewAction, m_Mode.data(), &Mode::ExecAction);
 }

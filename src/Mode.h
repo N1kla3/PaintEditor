@@ -12,9 +12,12 @@ class QGraphicsScene;
 /*
  * Basic class for every mode in painter
  */
-class Mode
+class Mode : public QObject
 {
+    Q_OBJECT
 public:
+    explicit Mode(QObject* parent) : QObject(parent) {}
+
     virtual void ExecAction(const EditorAction& action) = 0;
 
     virtual void RevertAction() = 0;

@@ -11,12 +11,13 @@ enum class EAction
     LeftPressed,
     LeftReleased,
     RightPressed,
-    RightReleased
+    RightReleased,
+    NONE
 };
 
 struct EditorAction
 {
-    EAction this_action_type = EAction::LeftPressed;
+    EAction this_action_type = EAction::NONE;
 
     QPoint action_location = QPoint{0, 0};
 };

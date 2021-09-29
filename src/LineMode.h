@@ -13,8 +13,9 @@ enum class ELineAlgorithm;
 class QGraphicsScene;
 class QGraphicsItem;
 
-class LineMode : Mode
+class LineMode : public Mode
 {
+    Q_OBJECT
 public:
     explicit LineMode(const QSharedPointer<QGraphicsScene>& scene, ELineAlgorithm algorithm);
 

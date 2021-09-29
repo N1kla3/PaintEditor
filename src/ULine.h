@@ -19,7 +19,7 @@ class ULine : public QObject, public QGraphicsItem
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
-    ULine(QObject* parent = nullptr, ELineAlgorithm algorithm = ELineAlgorithm::DDA);
+    explicit ULine(QObject* parent = nullptr, ELineAlgorithm algorithm = ELineAlgorithm::DDA);
 
     void SetupLine(QPoint start, QPoint end);
 

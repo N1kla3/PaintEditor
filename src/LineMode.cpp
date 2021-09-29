@@ -5,9 +5,11 @@
 #include "LineMode.h"
 #include "ULine.h"
 #include <QGraphicsScene>
+#include <iostream>
 
 void LineMode::ExecAction(const EditorAction &action)
 {
+    std::cout << __func__ ;
     m_ActionStack.push(action);
     if (m_ActionStack.size() > 2)
     {
@@ -41,7 +43,8 @@ void LineMode::CreateItem()
 }
 
 LineMode::LineMode(const QSharedPointer<QGraphicsScene>& scene, ELineAlgorithm algorithm)
-    : m_Algorithm(algorithm)
+    : Mode(scene.get())
+    , m_Algorithm(algorithm)
 {
     m_Scene = scene;
 }
