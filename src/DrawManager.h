@@ -19,6 +19,8 @@ public:
 
     QGraphicsItem* DrawLine(QPoint start, QPoint end, ELineAlgorithm algorithm);
 
+    void SetMode(Mode* newMode);
+
 private:
 
     std::unique_ptr<Mode> m_Mode;

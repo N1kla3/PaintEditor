@@ -21,6 +21,19 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     painter->drawPoint(13, 10);
     painter->drawPoint(14, 10);
     painter->drawPoint(15, 10);
+
+    if (m_Algorithm == ELineAlgorithm::DDA)
+    {
+
+    }
+    else if (m_Algorithm == ELineAlgorithm::BRASENHAME)
+    {
+
+    }
+    else if (m_Algorithm == ELineAlgorithm::WU)
+    {
+
+    }
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -28,4 +41,10 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 QRectF ULine::boundingRect() const
 {
     return {0, 0, 100, 100};
+}
+
+void ULine::SetupLine(QPoint start, QPoint end)
+{
+    m_Start = start;
+    m_End = end;
 }

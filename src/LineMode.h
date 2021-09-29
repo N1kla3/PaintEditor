@@ -5,15 +5,18 @@
 #pragma once
 
 #include "Mode.h"
-#include <queue>
+#include <stack>
 #include "EditorAction.h"
+#include <QSharedPointer>
 
 enum class ELineAlgorithm;
+class QGraphicsScene;
+class QGraphicsItem;
 
 class LineMode : Mode
 {
 public:
-    explicit LineMode(ELineAlgorithm algorithm);
+    explicit LineMode(const QSharedPointer<QGraphicsScene>& scene, ELineAlgorithm algorithm);
 
 protected:
     virtual void ExecAction(const EditorAction &action) override;
@@ -23,9 +26,11 @@ protected:
     virtual void CreateItem() override;
 
 private:
+    void CreateLine(QPoint start, QPoint end, ELineAlgorithm algorithm);
+
     ELineAlgorithm m_Algorithm;
 
-    std::queue<EditorAction> ActionQueue;
+    std::stack<EditorAction> m_ActionStack{};
 };
 
 

@@ -18,3 +18,8 @@ QGraphicsItem *DrawManager::DrawLine(QPoint start, QPoint end, ELineAlgorithm al
     m_Scene.lock()->addItem(line);
     return line;
 }
+
+void DrawManager::SetMode(Mode* newMode)
+{
+    m_Mode.reset(newMode);
+}
