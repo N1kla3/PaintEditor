@@ -59,25 +59,20 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_Graph"/>
-    <addaction name="separator"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
      <string>Actions</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="actionItems"/>
-    <addaction name="actionMatrix"/>
-    <addaction name="actionMake_Tree"/>
-    <addaction name="actionHamilton_Cycle"/>
-    <addaction name="actionDiametr_Radius"/>
-    <addaction name="actionDekart"/>
-    <addaction name="actionUnion"/>
-    <addaction name="actionIntersection"/>
-    <addaction name="actionAddition"/>
+    <widget class="QMenu" name="menuLineMode">
+     <property name="title">
+      <string>LineMode</string>
+     </property>
+     <addaction name="actionDDA"/>
+     <addaction name="actionBrasenhaim"/>
+     <addaction name="actionWU"/>
+    </widget>
+    <addaction name="menuLineMode"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
@@ -93,9 +88,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="LineMode"/>
-   <addaction name="actionNode"/>
-   <addaction name="actionArrow"/>
-   <addaction name="actionunoriented"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
@@ -239,6 +231,21 @@
   <action name="actionAddition">
    <property name="text">
     <string>Addition</string>
+   </property>
+  </action>
+  <action name="actionDDA">
+   <property name="text">
+    <string>DDA</string>
+   </property>
+  </action>
+  <action name="actionBrasenhaim">
+   <property name="text">
+    <string>Brasenhaim</string>
+   </property>
+  </action>
+  <action name="actionWU">
+   <property name="text">
+    <string>WU</string>
    </property>
   </action>
  </widget>
