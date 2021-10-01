@@ -11,7 +11,7 @@ void LineMode::ExecAction(const EditorAction &action)
 {
     std::cout << __func__ ;
     m_ActionStack.push(action);
-    if (m_ActionStack.size() > 2)
+    if (m_ActionStack.size() >= 2)
     {
         EditorAction last_action = m_ActionStack.top();
         if (last_action.this_action_type != EAction::LeftReleased)

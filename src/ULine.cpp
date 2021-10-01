@@ -15,13 +15,12 @@ ULine::ULine(QObject* parent, ELineAlgorithm algorithm)
 void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     painter->setPen(Qt::black);
-    painter->drawPoint(1, 1);
 
     prepareGeometryChange();
     if (m_Algorithm == ELineAlgorithm::DDA)
     {
         QPoint Diff = m_End - m_Start;
-        int len = std::max(Diff.x(), Diff.y());
+        int len = std::max(std::abs(Diff.x()), std::abs(Diff.y()));
         float dx = float(Diff.x()) / len;
         float dy = float(Diff.y()) / len;
 
@@ -50,11 +49,41 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 
 QRectF ULine::boundingRect() const
 {
-    return QRectF(QPointF{0, 0}, QPointF{100, 100});
+    int deltaY = m_End.y() - m_Start.y();
+    int deltaX = m_End.x() - m_Start.x();
+    int aleft = deltaX > 0 ? 0 : deltaX;
+    int atop = deltaY > 0 ? 0 : deltaY;
+    QRectF result(aleft, atop, std::abs(deltaX), std::abs(deltaY));
+    return result;
 }
 
 void ULine::SetupLine(QPoint start, QPoint end)
 {
     m_Start = start;
     m_End = end;
+    m_Angle = AngleBetweenPoints(start, end);
+}
+
+float ULine::AngleBetweenPoints(QPoint first, QPoint second)
+{
+    //Make point1 the origin, make point2 relative to the origin so we do point1 - point1, and point2-point1,
+    //since we dont need point1 for the equation to work, the equation works correctly with the origin 0,0.
+    int deltaY = second.y() - first.y();
+    int deltaX = second.x() - first.x(); //Vector 2 is now relative to origin, the angle is the same, we have just transformed it to use the origin.
+
+    float angleInDegrees = atan2(deltaY, deltaX) * 180 / 3.141;
+
+    angleInDegrees *= -1; // Y axis is inverted in computer windows, Y goes down, so invert the angle.
+
+    //Angle returned as:
+    //                      90
+    //            135                45
+    //
+    //       180          Origin           0
+    //
+    //           -135                -45
+    //
+    //                     -90
+
+    return angleInDegrees;
 }

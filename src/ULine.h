@@ -23,6 +23,8 @@ public:
 
     void SetupLine(QPoint start, QPoint end);
 
+    static float AngleBetweenPoints(QPoint first, QPoint second);
+
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
     virtual QRectF boundingRect() const override;
@@ -32,6 +34,8 @@ private:
 
     QPoint m_Start;
     QPoint m_End;
+
+    float m_Angle;
 
     QVector<QPoint> m_LineRepresentation;
 };
