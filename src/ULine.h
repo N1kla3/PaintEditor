@@ -32,6 +32,8 @@ private:
 
     QPoint m_Start;
     QPoint m_End;
+
+    QVector<QPoint> m_LineRepresentation;
 };
 
 
