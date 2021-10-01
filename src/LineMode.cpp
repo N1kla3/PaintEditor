@@ -5,11 +5,12 @@
 #include "LineMode.h"
 #include "ULine.h"
 #include <QGraphicsScene>
+#include "GlobalShit.h"
 #include <iostream>
 
 void LineMode::ExecAction(const EditorAction &action)
 {
-    std::cout << __func__ ;
+    VERBOSE();
     m_ActionStack.push(action);
     if (m_ActionStack.size() >= 2)
     {

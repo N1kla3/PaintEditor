@@ -13,6 +13,7 @@
 #include "iostream"
 #include "ULine.h"
 #include "ActionGraphicsScene.h"
+#include "GlobalShit.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -24,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(m_Scene.get());
 
     m_DrawManager = std::make_unique<DrawManager>(m_Scene);
-    //m_DrawManager->DrawLine(QPoint(), QPoint(), ELineAlgorithm::DDA);
 
     connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
 }
@@ -43,6 +43,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::actionDDA_triggered()
 {
-    std::cout << "Action DDA triggered\n";
+    VERBOSE();
     m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::DDA));
 }

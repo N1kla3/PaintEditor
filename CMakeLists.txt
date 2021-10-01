@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(Editor)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -15,6 +15,7 @@ find_package(Qt5 COMPONENTS
         REQUIRED)
 
 set(SOURCES
+        GlobalShit.h
         MainWindow.h
         MainWindow.cpp
         ULine.h
