@@ -35,6 +35,7 @@ private:
 
 private slots:
     void actionDDA_triggered();
+    void actionBrasen_triggered();
 };
 
 

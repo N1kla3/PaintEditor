@@ -37,7 +37,28 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     }
     else if (m_Algorithm == ELineAlgorithm::BRASENHAME)
     {
-
+        // primary is the longest axis value
+        QPoint Diff = m_End - m_Start;
+        float delta_primary = std::abs(Diff.x()) >= std::abs(Diff.y()) ? Diff.x() : Diff.y();
+        float delta_secondary = std::abs(Diff.y()) > std::abs(Diff.x()) ? Diff.x() : Diff.y();
+        float e = delta_secondary / delta_primary - 1.f / 2.f;
+        float primary = 0;
+        float secondary = 0;
+        float primary_grow = delta_primary > 0 ? 1 : -1;
+        float secondary_grow = delta_secondary > 0 ? 1 : -1;
+        for (int i = 0; i <= std::abs(delta_primary); i++)
+        {
+            if (e >= 0)
+            {
+                secondary += secondary_grow;
+                e--;
+            }
+            primary += primary_grow;
+            e = e + std::abs(delta_secondary / delta_primary);
+            QPoint res = std::abs(Diff.x()) >= std::abs(Diff.y()) ? QPoint{int(primary), int(secondary)} : QPoint{int(secondary), int(primary)};
+            m_LineRepresentation.push_back(res);
+            painter->drawPoint(res);
+        }
     }
     else if (m_Algorithm == ELineAlgorithm::WU)
     {

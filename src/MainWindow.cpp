@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_DrawManager = std::make_unique<DrawManager>(m_Scene);
 
     connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
+    connect(ui->actionBrasenhaim, &QAction::triggered, this, &MainWindow::actionBrasen_triggered);
 }
 
 MainWindow::~MainWindow()
@@ -45,4 +46,10 @@ void MainWindow::actionDDA_triggered()
 {
     VERBOSE();
     m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::DDA));
+}
+
+void MainWindow::actionBrasen_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::BRASENHAME));
 }
