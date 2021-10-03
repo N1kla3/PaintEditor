@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
     connect(ui->actionBrasenhaim, &QAction::triggered, this, &MainWindow::actionBrasen_triggered);
+    connect(ui->actionWU, &QAction::triggered, this, &MainWindow::actionWu_triggered);
 }
 
 MainWindow::~MainWindow()
@@ -52,4 +53,10 @@ void MainWindow::actionBrasen_triggered()
 {
     VERBOSE();
     m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::BRASENHAME));
+}
+
+void MainWindow::actionWu_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::WU));
 }

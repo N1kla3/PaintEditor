@@ -4,6 +4,7 @@
 
 #include "ULine.h"
 #include "QPainter"
+#include "GlobalShit.h"
 
 ULine::ULine(QObject* parent, ELineAlgorithm algorithm)
     :QObject(parent),
@@ -41,7 +42,8 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
         QPoint Diff = m_End - m_Start;
         float delta_primary = std::abs(Diff.x()) >= std::abs(Diff.y()) ? Diff.x() : Diff.y();
         float delta_secondary = std::abs(Diff.y()) > std::abs(Diff.x()) ? Diff.x() : Diff.y();
-        float e = delta_secondary / delta_primary - 1.f / 2.f;
+        float e = delta_secondary / delta_primary - 0.5f;
+
         float primary = 0;
         float secondary = 0;
         float primary_grow = delta_primary > 0 ? 1 : -1;
@@ -62,7 +64,43 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     }
     else if (m_Algorithm == ELineAlgorithm::WU)
     {
+        // primary is the longest axis value
+        QPoint Diff = m_End - m_Start;
+        float delta_primary = std::abs(Diff.x()) >= std::abs(Diff.y()) ? Diff.x() : Diff.y();
+        float delta_secondary = std::abs(Diff.y()) > std::abs(Diff.x()) ? Diff.x() : Diff.y();
+        float e = delta_secondary / delta_primary - 0.5f;
 
+        float primary = 0;
+        float secondary = 0;
+        float primary_grow = delta_primary > 0 ? 1 : -1;
+        float secondary_grow = delta_secondary > 0 ? 1 : -1;
+        int increment = delta_secondary >= 0.f ? -1 : 1;
+        for (int i = 0; i <= std::abs(delta_primary); i++)
+        {
+            if (e >= 0)
+            {
+                secondary += secondary_grow;
+                e--;
+            }
+
+            primary += primary_grow;
+            e = e + std::abs(delta_secondary / delta_primary);
+
+            int new_color = 255 * (std::abs(e) - std::abs(int(e)));
+            painter->setPen(QColor(new_color, new_color, new_color));
+            QPoint res = std::abs(Diff.x()) >= std::abs(Diff.y()) ? QPoint{int(primary), int(secondary)} : QPoint{int(secondary), int(primary)};
+            m_LineRepresentation.push_back(res);
+            painter->drawPoint(res);
+            if (i != 0 && i != std::abs(delta_primary))
+            {
+                new_color = 255 * (1 - (std::abs(e) - std::abs(int(e))));
+                painter->setPen(QColor(new_color, new_color, new_color));
+                int new_increment = e >= 0 ? increment * -1 : increment;
+                QPoint res = std::abs(Diff.x()) >= std::abs(Diff.y()) ? QPoint{int(primary), int(secondary) + new_increment} : QPoint{int(secondary) + new_increment, int(primary)};
+                m_LineRepresentation.push_back(res);
+                painter->drawPoint(res);
+            }
+        }
     }
     Q_UNUSED(option);
     Q_UNUSED(widget);

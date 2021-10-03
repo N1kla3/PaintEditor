@@ -14,7 +14,7 @@ DrawManager::DrawManager(const QSharedPointer<QGraphicsScene>& scene)
 
 void DrawManager::SetMode(Mode* newMode)
 {
-    m_Mode.clear();
+    if (m_Mode) delete m_Mode.data();
     m_Mode = newMode;
     auto* action_scene = qobject_cast<ActionGraphicsScene*>(m_Scene.data());
     QObject::connect(action_scene, &ActionGraphicsScene::NewAction, m_Mode.data(), &Mode::ExecAction);
