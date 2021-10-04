@@ -5,6 +5,7 @@
 #include "ULine.h"
 #include "QPainter"
 #include "GlobalShit.h"
+#include "MainWindow.h"
 
 ULine::ULine(QObject* parent, ELineAlgorithm algorithm)
     :QObject(parent),
@@ -34,6 +35,15 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
             QPoint point{int(x), int(y)};
             m_LineRepresentation.push_back(point);
             painter->drawPoint(point);
+
+            if (m_StartedWithDebug)
+            {
+                if (debug_counter == len || !MainWindow::Window->DebugMode)
+                {
+                    m_StartedWithDebug = false;
+                }
+                if (i == debug_counter) break;
+            }
         }
     }
     else if (m_Algorithm == ELineAlgorithm::BRASENHAME)
@@ -121,6 +131,14 @@ void ULine::SetupLine(QPoint start, QPoint end)
     m_Start = start;
     m_End = end;
     m_Angle = AngleBetweenPoints(start, end);
+
+    if (MainWindow::Window->DebugMode)
+    {
+        m_StartedWithDebug = true;
+        connect(MainWindow::Window, &MainWindow::DebugIteration, [this](){
+            debug_counter++;
+        });
+    }
 }
 
 float ULine::AngleBetweenPoints(QPoint first, QPoint second)

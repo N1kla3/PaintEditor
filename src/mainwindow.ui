@@ -87,7 +87,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="LineMode"/>
+   <addaction name="DebugMode"/>
+   <addaction name="actionactionNextStep"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
@@ -121,7 +122,7 @@
     <string>UnOri</string>
    </property>
   </action>
-  <action name="LineMode">
+  <action name="DebugMode">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -246,6 +247,15 @@
   <action name="actionWU">
    <property name="text">
     <string>WU</string>
+   </property>
+  </action>
+  <action name="actionactionNextStep">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../OneDrive/Изображения/Gandalf-gandalf-12059929-960-404.jpg</normaloff>../../../OneDrive/Изображения/Gandalf-gandalf-12059929-960-404.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>actionNextStep</string>
    </property>
   </action>
  </widget>

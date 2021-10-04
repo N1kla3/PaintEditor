@@ -26,9 +26,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_DrawManager = std::make_unique<DrawManager>(m_Scene);
 
+    MainWindow::Window = this;
+
     connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
     connect(ui->actionBrasenhaim, &QAction::triggered, this, &MainWindow::actionBrasen_triggered);
     connect(ui->actionWU, &QAction::triggered, this, &MainWindow::actionWu_triggered);
+    connect(ui->DebugMode, &QAction::toggled, this, &MainWindow::toggleDebugMode);
+    connect(ui->actionactionNextStep, &QAction::triggered, this, &MainWindow::nextDebug);
 }
 
 MainWindow::~MainWindow()
@@ -59,4 +63,15 @@ void MainWindow::actionWu_triggered()
 {
     VERBOSE();
     m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::WU));
+}
+
+void MainWindow::toggleDebugMode(bool toggle)
+{
+    VERBOSE("Debug is ", toggle);
+    DebugMode = toggle;
+}
+
+void MainWindow::nextDebug()
+{
+    emit DebugIteration();
 }

@@ -26,6 +26,13 @@ public:
 
     QSharedPointer<QGraphicsScene> GetScene() const { return m_Scene; }
 
+    bool DebugMode = false;
+
+    inline static MainWindow* Window = nullptr;
+
+signals:
+    void DebugIteration();
+
 private:
     Ui::MainWindow *ui;
 
@@ -37,6 +44,9 @@ private slots:
     void actionDDA_triggered();
     void actionBrasen_triggered();
     void actionWu_triggered();
+
+    void toggleDebugMode(bool toggle);
+    void nextDebug();
 };
 
 

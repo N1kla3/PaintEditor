@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+class MainWindow;
+
 #ifdef _DEBUG
     #define VERBOSE(...) std::cout << __func__ << ": "; Editor::print(__VA_ARGS__)
 #else
