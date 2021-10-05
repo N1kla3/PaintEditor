@@ -70,6 +70,14 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
             QPoint res = std::abs(Diff.x()) >= std::abs(Diff.y()) ? QPoint{int(primary), int(secondary)} : QPoint{int(secondary), int(primary)};
             m_LineRepresentation.push_back(res);
             painter->drawPoint(res);
+            if (m_StartedWithDebug)
+            {
+                if (debug_counter == std::abs(delta_primary) || !MainWindow::Window->DebugMode)
+                {
+                    m_StartedWithDebug = false;
+                }
+                if (i == debug_counter) break;
+            }
         }
     }
     else if (m_Algorithm == ELineAlgorithm::WU)
@@ -109,6 +117,14 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
                 QPoint res = std::abs(Diff.x()) >= std::abs(Diff.y()) ? QPoint{int(primary), int(secondary) + new_increment} : QPoint{int(secondary) + new_increment, int(primary)};
                 m_LineRepresentation.push_back(res);
                 painter->drawPoint(res);
+            }
+            if (m_StartedWithDebug)
+            {
+                if (debug_counter == std::abs(delta_primary) || !MainWindow::Window->DebugMode)
+                {
+                    m_StartedWithDebug = false;
+                }
+                if (i == debug_counter) break;
             }
         }
     }
