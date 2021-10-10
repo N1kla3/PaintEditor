@@ -42,8 +42,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->graphicsView->resize(this->width()-20, this->height()-100);
-    ui->graphicsView->scene()->setSceneRect(0,0, this->width()-20, this->height()-100);
+    ui->tabWidget->resize(this->width()-20, this->height()-100);
+    ui->plainTextEdit->resize(this->width()-50, this->height()-150);
+    ui->graphicsView->resize(this->width()-40, this->height()-140);
+    ui->graphicsView->scene()->setSceneRect(0,0, this->width()-40, this->height()-140);
     QWidget::resizeEvent(event);
 }
 
