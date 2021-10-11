@@ -77,3 +77,8 @@ void MainWindow::nextDebug()
 {
     emit DebugIteration();
 }
+
+void MainWindow::AddConsoleLine(const QString &str)
+{
+    ui->plainTextEdit->insertPlainText(str+"\n");
+}

@@ -30,6 +30,8 @@ public:
 
     inline static MainWindow* Window = nullptr;
 
+    void AddConsoleLine(const QString& str);
+
 signals:
     void DebugIteration();
 

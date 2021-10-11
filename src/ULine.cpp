@@ -76,7 +76,18 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
                 {
                     m_StartedWithDebug = false;
                 }
-                if (i == debug_counter) break;
+                if (i == debug_counter)
+                {
+                    if (ENABLE_DEBUG_PRINT)
+                    {
+                        // TODO: simplify this
+                        ENABLE_DEBUG_PRINT = false;
+                        MainWindow::Window->AddConsoleLine("Primary axis " + QString::number(primary));
+                        MainWindow::Window->AddConsoleLine("Secondary axis " + QString::number(secondary));
+                        MainWindow::Window->AddConsoleLine("Error " + QString::number(e));
+                    }
+                    break;
+                }
             }
         }
     }
@@ -146,13 +157,13 @@ void ULine::SetupLine(QPoint start, QPoint end)
 {
     m_Start = start;
     m_End = end;
-    m_Angle = AngleBetweenPoints(start, end);
 
     if (MainWindow::Window->DebugMode)
     {
         m_StartedWithDebug = true;
         connect(MainWindow::Window, &MainWindow::DebugIteration, [this](){
             debug_counter++;
+            ENABLE_DEBUG_PRINT = true;
         });
     }
 }

@@ -35,9 +35,8 @@ private:
     QPoint m_Start;
     QPoint m_End;
 
-    float m_Angle;
-
     bool m_StartedWithDebug = false;
+    bool ENABLE_DEBUG_PRINT = false;
     int debug_counter = 1;
 
     QVector<QPoint> m_LineRepresentation;
