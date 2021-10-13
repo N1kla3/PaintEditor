@@ -42,7 +42,19 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
                 {
                     m_StartedWithDebug = false;
                 }
-                if (i == debug_counter) break;
+                if (i == debug_counter)
+                {
+                    if (ENABLE_DEBUG_PRINT)
+                    {
+                        // TODO: simplify this
+                        ENABLE_DEBUG_PRINT = false;
+                        MainWindow::Window->AddConsoleLine("X axis " + QString::number(x));
+                        MainWindow::Window->AddConsoleLine("Y axis " + QString::number(y));
+                        MainWindow::Window->AddConsoleLine("dx " + QString::number(dx));
+                        MainWindow::Window->AddConsoleLine("yx " + QString::number(dy));
+                    }
+                    break;
+                }
             }
         }
     }
@@ -135,7 +147,18 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
                 {
                     m_StartedWithDebug = false;
                 }
-                if (i == debug_counter) break;
+                if (i == debug_counter)
+                {
+                    if (ENABLE_DEBUG_PRINT)
+                    {
+                        // TODO: simplify this
+                        ENABLE_DEBUG_PRINT = false;
+                        MainWindow::Window->AddConsoleLine("Primary axis " + QString::number(primary));
+                        MainWindow::Window->AddConsoleLine("Secondary axis " + QString::number(secondary));
+                        MainWindow::Window->AddConsoleLine("Error " + QString::number(e));
+                    }
+                    break;
+                }
             }
         }
     }
