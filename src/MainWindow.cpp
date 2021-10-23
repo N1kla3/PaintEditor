@@ -14,6 +14,7 @@
 #include "ULine.h"
 #include "ActionGraphicsScene.h"
 #include "GlobalShit.h"
+#include "SecondOrderMode.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -31,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionDDA, &QAction::triggered, this, &MainWindow::actionDDA_triggered);
     connect(ui->actionBrasenhaim, &QAction::triggered, this, &MainWindow::actionBrasen_triggered);
     connect(ui->actionWU, &QAction::triggered, this, &MainWindow::actionWu_triggered);
+    connect(ui->actionCircle, &QAction::triggered, this, &MainWindow::actionCircle_triggered);
+    connect(ui->actionEllipse, &QAction::triggered, this, &MainWindow::actionEllipse_triggered);
+    connect(ui->actionHyperbola, &QAction::triggered, this, &MainWindow::actionHyperbola_triggered);
+    connect(ui->actionParabola, &QAction::triggered, this, &MainWindow::actionParabola_triggered);
+
     connect(ui->DebugMode, &QAction::toggled, this, &MainWindow::toggleDebugMode);
     connect(ui->actionactionNextStep, &QAction::triggered, this, &MainWindow::nextDebug);
 }
@@ -65,6 +71,30 @@ void MainWindow::actionWu_triggered()
 {
     VERBOSE();
     m_DrawManager->SetMode(new LineMode(m_Scene, ELineAlgorithm::WU));
+}
+
+void MainWindow::actionCircle_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new SecondOrderMode(m_Scene, ESecondOrderShape::CIRCLE));
+}
+
+void MainWindow::actionEllipse_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new SecondOrderMode(m_Scene, ESecondOrderShape::ELLIPSE));
+}
+
+void MainWindow::actionHyperbola_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new SecondOrderMode(m_Scene, ESecondOrderShape::HYPERBOLA));
+}
+
+void MainWindow::actionParabola_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new SecondOrderMode(m_Scene, ESecondOrderShape::PARABOLA));
 }
 
 void MainWindow::toggleDebugMode(bool toggle)

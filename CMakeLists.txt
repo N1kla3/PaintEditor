@@ -29,7 +29,11 @@ set(SOURCES
         EditorAction.h
         EditorAction.cpp
         ActionGraphicsScene.h
-        ActionGraphicsScene.cpp)
+        ActionGraphicsScene.cpp
+        SecondOrderMode.h
+        SecondOrderMode.cpp
+        USecondOrder.h
+        USecondOrder.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 

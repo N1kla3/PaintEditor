@@ -18,7 +18,6 @@ void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 {
     painter->setPen(Qt::black);
 
-    prepareGeometryChange();
     if (m_Algorithm == ELineAlgorithm::DDA)
     {
         QPoint Diff = m_End - m_Start;

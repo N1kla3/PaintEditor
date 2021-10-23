@@ -110,8 +110,18 @@
     </widget>
     <addaction name="menuLineMode"/>
    </widget>
+   <widget class="QMenu" name="menuSecond_Order">
+    <property name="title">
+     <string>Second Order</string>
+    </property>
+    <addaction name="actionCircle"/>
+    <addaction name="actionEllipse"/>
+    <addaction name="actionHyperbola"/>
+    <addaction name="actionParabola"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
+   <addaction name="menuSecond_Order"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -292,6 +302,26 @@
    </property>
    <property name="text">
     <string>actionNextStep</string>
+   </property>
+  </action>
+  <action name="actionCircle">
+   <property name="text">
+    <string>Circle</string>
+   </property>
+  </action>
+  <action name="actionEllipse">
+   <property name="text">
+    <string>Ellipse</string>
+   </property>
+  </action>
+  <action name="actionHyperbola">
+   <property name="text">
+    <string>Hyperbola</string>
+   </property>
+  </action>
+  <action name="actionParabola">
+   <property name="text">
+    <string>Parabola</string>
    </property>
   </action>
  </widget>

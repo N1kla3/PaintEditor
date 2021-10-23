@@ -46,6 +46,10 @@ private slots:
     void actionDDA_triggered();
     void actionBrasen_triggered();
     void actionWu_triggered();
+    void actionCircle_triggered();
+    void actionEllipse_triggered();
+    void actionHyperbola_triggered();
+    void actionParabola_triggered();
 
     void toggleDebugMode(bool toggle);
     void nextDebug();
