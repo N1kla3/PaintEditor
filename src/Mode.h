@@ -1,6 +1,4 @@
-//
-// Created by kolya on 9/27/2021.
-//
+//Developed by Nicolai Vladimirski BSUIR group 821703 24.10.21
 
 #pragma once
 

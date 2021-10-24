@@ -176,8 +176,8 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../Editor.qrc">
-     <normaloff>:/newPrefix/bug.jpg</normaloff>:/newPrefix/bug.jpg</iconset>
+    <iconset>
+     <normaloff>../bug.jpg</normaloff>../bug.jpg</iconset>
    </property>
    <property name="text">
     <string>select</string>
@@ -297,8 +297,8 @@
   </action>
   <action name="actionactionNextStep">
    <property name="icon">
-    <iconset resource="../Editor.qrc">
-     <normaloff>:/newPrefix/next.jpg</normaloff>:/newPrefix/next.jpg</iconset>
+    <iconset>
+     <normaloff>../next.jpg</normaloff>../next.jpg</iconset>
    </property>
    <property name="text">
     <string>actionNextStep</string>

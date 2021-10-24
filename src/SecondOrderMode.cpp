@@ -1,6 +1,4 @@
-//
-// Created by kolya on 10/23/2021.
-//
+//Developed by Nicolai Vladimirski BSUIR group 821703 24.10.21
 
 #include "SecondOrderMode.h"
 #include "QGraphicsScene"

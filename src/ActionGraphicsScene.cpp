@@ -1,6 +1,4 @@
-//
-// Created by kolya on 9/29/2021.
-//
+//Developed by Nicolai Vladimirski BSUIR group 821703 24.10.21
 
 #include "ActionGraphicsScene.h"
 #include "EditorAction.h"

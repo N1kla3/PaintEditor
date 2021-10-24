@@ -1,6 +1,4 @@
-//
-// Created by kolya on 9/24/2021.
-//
+//Developed by Nicolai Vladimirski BSUIR group 821703 24.10.21
 
 #include "ULine.h"
 #include "QPainter"
@@ -17,6 +15,7 @@ ULine::ULine(QObject* parent, ELineAlgorithm algorithm)
 void ULine::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     painter->setPen(Qt::black);
+    prepareGeometryChange();
 
     if (m_Algorithm == ELineAlgorithm::DDA)
     {
