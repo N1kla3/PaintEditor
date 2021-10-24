@@ -176,8 +176,8 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>../../../OneDrive/Изображения/meme.jpg</normaloff>../../../OneDrive/Изображения/meme.jpg</iconset>
+    <iconset resource="../Editor.qrc">
+     <normaloff>:/newPrefix/bug.jpg</normaloff>:/newPrefix/bug.jpg</iconset>
    </property>
    <property name="text">
     <string>select</string>
@@ -297,8 +297,8 @@
   </action>
   <action name="actionactionNextStep">
    <property name="icon">
-    <iconset>
-     <normaloff>../../../OneDrive/Изображения/Gandalf-gandalf-12059929-960-404.jpg</normaloff>../../../OneDrive/Изображения/Gandalf-gandalf-12059929-960-404.jpg</iconset>
+    <iconset resource="../Editor.qrc">
+     <normaloff>:/newPrefix/next.jpg</normaloff>:/newPrefix/next.jpg</iconset>
    </property>
    <property name="text">
     <string>actionNextStep</string>

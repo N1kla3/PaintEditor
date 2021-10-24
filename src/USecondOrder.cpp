@@ -116,6 +116,49 @@ void USecondOrder::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
             }
         }
     }
+    else if (m_ShapeType == ESecondOrderShape::HYPERBOLA)
+    {
+        float a = abs(m_Start.x() - m_End.x());
+        float b = abs(m_Start.y() - m_End.y());
+        int x,y;
+        x=a,y=0;
+        int d = 2*a*a-2*a*b*b-b*b;
+        while(y<=b*b*x/(a*a))
+        {
+            painter->drawPoint(x, y);
+            painter->drawPoint(-x, y);
+            painter->drawPoint(x, -y);
+            painter->drawPoint(-x, -y);
+            if(d<0)
+            {
+                d+=2*a*a*(2*y+3);
+            }
+            else
+            {
+                d+=2*a*a*(2*y+3)-4*b*b*(x+1) ;
+                x++;
+            }
+            y++;
+        }
+        int init = 100;
+        while(init--)
+        {
+            if(d<0)
+            {
+                d+=2*b*b*(3+2*x);
+            }
+            else
+            {
+                d+=2*b*b*(3+2*x) -4*a*a*(y+1);
+                y++;
+            }
+            x++;
+            painter->drawPoint(x, y);
+            painter->drawPoint(-x, y);
+            painter->drawPoint(x, -y);
+            painter->drawPoint(-x, -y);
+        }
+    }
     else if (m_ShapeType == ESecondOrderShape::PARABOLA)
     {
 
@@ -134,7 +177,7 @@ QRectF USecondOrder::boundingRect() const
         QRectF result(-radius, -radius, 2*radius, 2*radius);
         return result;
     }
-    else if (m_ShapeType == ESecondOrderShape::ELLIPSE)
+    else// if (m_ShapeType == ESecondOrderShape::ELLIPSE)
     {
         QPoint point = m_End - m_Start;
         QRectF result(-abs(point.x()), -abs(point.y()), 2*abs(point.x()), 2*abs(point.y()));
