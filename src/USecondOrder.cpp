@@ -35,6 +35,7 @@ void USecondOrder::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setPen(Qt::black);
     if (m_ShapeType == ESecondOrderShape::CIRCLE)
     {
+        /*
         float radius = sqrt(pow((m_Start.x() - m_End.x()), 2.f) + pow((m_Start.y() - m_End.y()), 2.f));
         float p = 0;
         float q = radius;
@@ -55,6 +56,36 @@ void USecondOrder::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
             }
         }
         DrawCircle(painter, 0, 0, p, q);
+        */
+        float radius = sqrt(pow((m_Start.x() - m_End.x()), 2.f) + pow((m_Start.y() - m_End.y()), 2.f));
+
+        float x = 0;
+        float y = radius;
+
+        float delta = 2 - 2 * radius;
+        float border = 0;
+
+        painter->drawPoint(x, y);
+        painter->drawPoint(-x, y);
+        painter->drawPoint(x, -y);
+        painter->drawPoint(-x, -y);
+        while (y > border)
+        {
+            if (delta < 0)
+            {
+                x++;
+                delta += 2*x + 1;
+            }
+            else
+            {
+                y--;
+                delta += -2*y + 1;
+            }
+            painter->drawPoint(x, y);
+            painter->drawPoint(-x, y);
+            painter->drawPoint(x, -y);
+            painter->drawPoint(-x, -y);
+        }
     }
     else if (m_ShapeType == ESecondOrderShape::ELLIPSE)
     {
@@ -116,50 +147,69 @@ void USecondOrder::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     }
     else if (m_ShapeType == ESecondOrderShape::HYPERBOLA)
     {
-        float a = abs(m_Start.x() - m_End.x());
+
+        float focus = abs(m_Start.x() - m_End.x());
+        float a = focus;
         float b = abs(m_Start.y() - m_End.y());
-        int x,y;
-        x=a,y=0;
-        int d = 2*a*a-2*a*b*b-b*b;
-        while(y<=b*b*x/(a*a))
+
+        float x = focus;
+        float y = 0;
+
+        float delta = (focus * focus) - (b * b) + 2 * focus * b * b;
+
+        painter->drawPoint(x, y);
+        painter->drawPoint(-x, y);
+        painter->drawPoint(x, -y);
+        painter->drawPoint(-x, -y);
+        while (y < b)
         {
-            painter->drawPoint(x, y);
-            painter->drawPoint(-x, y);
-            painter->drawPoint(x, -y);
-            painter->drawPoint(-x, -y);
-            if(d<0)
+            if (delta < 0)
             {
-                d+=2*a*a*(2*y+3);
-            }
-            else
-            {
-                d+=2*a*a*(2*y+3)-4*b*b*(x+1) ;
                 x++;
-            }
-            y++;
-        }
-        int init = 100;
-        while(init--)
-        {
-            if(d<0)
-            {
-                d+=2*b*b*(3+2*x);
+                delta += 2 * x * b * b + b * b;
             }
             else
             {
-                d+=2*b*b*(3+2*x) -4*a*a*(y+1);
                 y++;
+                delta += -(2 * y * a * a) - a * a;
             }
-            x++;
             painter->drawPoint(x, y);
             painter->drawPoint(-x, y);
             painter->drawPoint(x, -y);
             painter->drawPoint(-x, -y);
         }
+
     }
     else if (m_ShapeType == ESecondOrderShape::PARABOLA)
     {
+        float p = abs(m_Start.x() - m_End.x());
 
+        float x = 0;
+        float y = 0;
+
+        float delta = 2 * p - 1;
+
+        painter->drawPoint(x, y);
+        painter->drawPoint(-x, y);
+        painter->drawPoint(x, -y);
+        painter->drawPoint(-x, -y);
+        while (x < 2 * p)
+        {
+            if (delta < 0)
+            {
+                x++;
+                delta += 2 * p;
+            }
+            else
+            {
+                y++;
+                delta += -(2 * y) - 1;
+            }
+            painter->drawPoint(x, y);
+            painter->drawPoint(-x, y);
+            painter->drawPoint(x, -y);
+            painter->drawPoint(-x, -y);
+        }
     }
     Q_UNUSED(widget);
     Q_UNUSED(option);
@@ -175,10 +225,22 @@ QRectF USecondOrder::boundingRect() const
         QRectF result(-radius, -radius, 2*radius, 2*radius);
         return result;
     }
-    else// if (m_ShapeType == ESecondOrderShape::ELLIPSE)
+    else if (m_ShapeType == ESecondOrderShape::ELLIPSE)
     {
         QPoint point = m_End - m_Start;
         QRectF result(-abs(point.x()), -abs(point.y()), 2*abs(point.x()), 2*abs(point.y()));
+        return result;
+    }
+    else if (m_ShapeType == ESecondOrderShape::HYPERBOLA)
+    {
+        QPoint point = m_End - m_Start;
+        QRectF result(-abs(2*point.x()), -abs(point.y()), 4*abs(point.x()), 2*abs(point.y()));
+        return result;
+    }
+    else
+    {
+        QPoint point = m_End - m_Start;
+        QRectF result(-abs(2.5f*point.x()), -2.25f*abs(point.x()), 5*abs(point.x()), 4.5f*abs(point.x()));
         return result;
     }
 }
