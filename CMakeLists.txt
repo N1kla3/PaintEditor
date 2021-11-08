@@ -33,7 +33,13 @@ set(SOURCES
         SecondOrderMode.h
         SecondOrderMode.cpp
         USecondOrder.h
-        USecondOrder.cpp)
+        USecondOrder.cpp
+        Curve.h
+        Curve.cpp
+        CurveMode.h
+        CurveMode.cpp
+        Matrix.h
+        Matrix.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 
