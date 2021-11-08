@@ -4,15 +4,15 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QTextStream>
-#include <QRandomGenerator>
 #include "DrawManager.h"
 #include "LineMode.h"
 #include "ui_mainwindow.h"
-#include "iostream"
 #include "ULine.h"
+#include "Curve.h"
 #include "ActionGraphicsScene.h"
 #include "GlobalShit.h"
 #include "SecondOrderMode.h"
+#include "CurveMode.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionEllipse, &QAction::triggered, this, &MainWindow::actionEllipse_triggered);
     connect(ui->actionHyperbola, &QAction::triggered, this, &MainWindow::actionHyperbola_triggered);
     connect(ui->actionParabola, &QAction::triggered, this, &MainWindow::actionParabola_triggered);
+    connect(ui->actionErmit, &QAction::triggered, this, &MainWindow::actionErmit_triggered);
+    connect(ui->actionBezje, &QAction::triggered, this, &MainWindow::actionBezje_triggered);
+    connect(ui->actionB_spline, &QAction::triggered, this, &MainWindow::actionB_spline_triggered);
 
     connect(ui->DebugMode, &QAction::toggled, this, &MainWindow::toggleDebugMode);
     connect(ui->actionactionNextStep, &QAction::triggered, this, &MainWindow::nextDebug);
@@ -93,6 +96,24 @@ void MainWindow::actionParabola_triggered()
 {
     VERBOSE();
     m_DrawManager->SetMode(new SecondOrderMode(m_Scene, ESecondOrderShape::PARABOLA));
+}
+
+void MainWindow::actionErmit_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new CurveMode(m_Scene, ECurveAlgo::ERMIT));
+}
+
+void MainWindow::actionBezje_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new CurveMode(m_Scene, ECurveAlgo::BEZJE));
+}
+
+void MainWindow::actionB_spline_triggered()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new CurveMode(m_Scene, ECurveAlgo::SPLINE));
 }
 
 void MainWindow::toggleDebugMode(bool toggle)

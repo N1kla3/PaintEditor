@@ -48,6 +48,9 @@ private slots:
     void actionEllipse_triggered();
     void actionHyperbola_triggered();
     void actionParabola_triggered();
+    void actionErmit_triggered();
+    void actionBezje_triggered();
+    void actionB_spline_triggered();
 
     void toggleDebugMode(bool toggle);
     void nextDebug();

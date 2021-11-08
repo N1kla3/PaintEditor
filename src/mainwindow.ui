@@ -119,9 +119,18 @@
     <addaction name="actionHyperbola"/>
     <addaction name="actionParabola"/>
    </widget>
+   <widget class="QMenu" name="menuCurves">
+    <property name="title">
+     <string>Curves</string>
+    </property>
+    <addaction name="actionErmit"/>
+    <addaction name="actionBezje"/>
+    <addaction name="actionB_spline"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
    <addaction name="menuSecond_Order"/>
+   <addaction name="menuCurves"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -322,6 +331,21 @@
   <action name="actionParabola">
    <property name="text">
     <string>Parabola</string>
+   </property>
+  </action>
+  <action name="actionErmit">
+   <property name="text">
+    <string>Ermit</string>
+   </property>
+  </action>
+  <action name="actionBezje">
+   <property name="text">
+    <string>Bezje</string>
+   </property>
+  </action>
+  <action name="actionB_spline">
+   <property name="text">
+    <string>B-spline</string>
    </property>
   </action>
  </widget>
