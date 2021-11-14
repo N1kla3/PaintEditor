@@ -25,8 +25,19 @@ public:
 
     virtual QRectF boundingRect() const override;
 
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+
 private:
     ECurveAlgo m_Algorithm;
+
+    QPoint m_A;
+    QPoint m_B;
+    QPoint m_C;
+    QPoint m_D;
+
+    bool m_IsMovingNow = false;
 
     bool m_StartedWithDebug = false;
     bool ENABLE_DEBUG_PRINT = false;
