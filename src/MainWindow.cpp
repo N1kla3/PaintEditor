@@ -13,6 +13,7 @@
 #include "GlobalShit.h"
 #include "SecondOrderMode.h"
 #include "CurveMode.h"
+#include "FreeMode.h"
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->DebugMode, &QAction::toggled, this, &MainWindow::toggleDebugMode);
     connect(ui->actionactionNextStep, &QAction::triggered, this, &MainWindow::nextDebug);
+    connect(ui->actionFree, &QAction::triggered, this, &MainWindow::actionFreeMode);
 }
 
 MainWindow::~MainWindow()
@@ -130,4 +132,10 @@ void MainWindow::nextDebug()
 void MainWindow::AddConsoleLine(const QString &str)
 {
     ui->plainTextEdit->insertPlainText(str+"\n");
+}
+
+void MainWindow::actionFreeMode()
+{
+    VERBOSE();
+    m_DrawManager->SetMode(new FreeMode(m_Scene));
 }

@@ -144,6 +144,7 @@
    </attribute>
    <addaction name="DebugMode"/>
    <addaction name="actionactionNextStep"/>
+   <addaction name="actionFree"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
@@ -346,6 +347,11 @@
   <action name="actionB_spline">
    <property name="text">
     <string>B-spline</string>
+   </property>
+  </action>
+  <action name="actionFree">
+   <property name="text">
+    <string>Free mode</string>
    </property>
   </action>
  </widget>

@@ -53,6 +53,7 @@ private slots:
     void actionB_spline_triggered();
 
     void toggleDebugMode(bool toggle);
+    void actionFreeMode();
     void nextDebug();
 };
 
