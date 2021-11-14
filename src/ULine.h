@@ -27,6 +27,8 @@ public:
 
     virtual QRectF boundingRect() const override;
 
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+
 private:
     ELineAlgorithm m_Algorithm;
 

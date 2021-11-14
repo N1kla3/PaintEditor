@@ -39,7 +39,9 @@ set(SOURCES
         CurveMode.h
         CurveMode.cpp
         Matrix.h
-        Matrix.cpp)
+        Matrix.cpp
+        FreeMode.h
+        FreeMode.cpp)
 
 list(TRANSFORM SOURCES PREPEND "src/")
 

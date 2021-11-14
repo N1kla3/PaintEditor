@@ -212,3 +212,9 @@ float ULine::AngleBetweenPoints(QPoint first, QPoint second)
 
     return angleInDegrees;
 }
+
+void ULine::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mousePressEvent(event);
+    VERBOSE("shit");
+}
