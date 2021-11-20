@@ -2,6 +2,7 @@
 
 #include "ActionGraphicsScene.h"
 #include "EditorAction.h"
+#include "GlobalShit.h"
 #include <QGraphicsSceneMouseEvent>
 
 ActionGraphicsScene::ActionGraphicsScene(QObject *parent)
@@ -12,6 +13,7 @@ ActionGraphicsScene::ActionGraphicsScene(QObject *parent)
 
 void ActionGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    VERBOSE("scene");
     EditorAction action;
     action.action_location = event->scenePos().toPoint();
     if (event->button() == Qt::LeftButton)
@@ -34,6 +36,7 @@ void ActionGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void ActionGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    VERBOSE("scene");
     EditorAction action;
     action.action_location = event->scenePos().toPoint();
     if (event->button() == Qt::LeftButton)

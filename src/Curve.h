@@ -30,12 +30,13 @@ public:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
 
 private:
+    int getPointFromLocation(QPointF point);
+
+    int m_MovingIndex;
+
     ECurveAlgo m_Algorithm;
 
-    QPoint m_A;
-    QPoint m_B;
-    QPoint m_C;
-    QPoint m_D;
+    std::vector<QPointF> m_Points;
 
     bool m_IsMovingNow = false;
 

@@ -216,5 +216,17 @@ float ULine::AngleBetweenPoints(QPoint first, QPoint second)
 void ULine::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mousePressEvent(event);
-    VERBOSE("shit");
+    VERBOSE("line selected TEST");
+}
+
+void ULine::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseMoveEvent(event);
+    VERBOSE("line move TEST");
+}
+
+void ULine::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseReleaseEvent(event);
+    VERBOSE("line release TEST");
 }

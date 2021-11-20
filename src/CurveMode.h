@@ -27,7 +27,7 @@ protected:
     virtual void CreateItem() override;
 
 private:
-    //void CreateLine(QPoint start, QPoint end, ECurveAlgo algorithm);
+    void CreateCurve(QPoint pos, ECurveAlgo algorithm);
 
     ECurveAlgo m_Algorithm;
 

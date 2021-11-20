@@ -28,7 +28,7 @@ public:
      * size of in-vector is column
      * all in-vectors should be of the same size
      */
-    matrix(std::vector<std::vector<T>>&& inmat)
+    constexpr matrix(std::vector<std::vector<T>>&& inmat)
     {
         if (inmat.empty()) throw std::exception("vector is empty - matrix");
         ROW = inmat.size();
