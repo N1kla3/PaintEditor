@@ -9,9 +9,9 @@
 
 template<class T>
 class matrix{
+public:
     size_t ROW,COL;
     std::vector<std::vector<T>> mat;
-public:
     matrix(size_t N, size_t M, int populate = 0){
         this->ROW = N;
         this->COL = M;
@@ -53,7 +53,7 @@ public:
             std::cout << "\n";
         }
     }
-    matrix<T> operator*(const matrix &rhs) const
+    matrix<T> operator*(const matrix<T> &rhs) const
     {
         if(this->COL != rhs.ROW){
             throw std::exception("MATRIX MULTIPLICATION CANNOT HAPPEN WITH THE GIVEN MATRICES");
@@ -63,10 +63,10 @@ public:
         {
             for(int _j = 0; _j < rhs.COL; _j++)
             {
-                result[_i][_j] = 0;
+                result.mat[_i][_j] = 0;
                 for(int _k = 0; _k < this->COL; ++_k)
                 {
-                    result[_i][_j]+=(this->mat[_i][_k]*rhs.mat[_k][_j]);
+                    result.mat[_i][_j]+=(this->mat[_i][_k]*rhs.mat[_k][_j]);
                 }
             }
         }

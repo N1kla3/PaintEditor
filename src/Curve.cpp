@@ -26,21 +26,49 @@ void Curve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->setBrush(Qt::black);
     prepareGeometryChange();
     auto prev = m_Points[3];
+    auto index = 1;
     for (auto point: m_Points)
     {
+        painter->setPen(Qt::black);
         painter->drawEllipse(point, 5, 5);
         painter->drawLine(prev, point);
+        painter->setPen(Qt::red);
+        painter->drawText(point - QPoint(5, -5), QString::number(index));
         prev = point;
+        index++;
     }
 
     if (m_Algorithm == ECurveAlgo::ERMIT)
     {
-        static const ::matrix<float> mat{{{2, -3, 0, 1},
-                                         {-2, 3, 0, 0},
-                                         {1, -2, 1, 0},
-                                         {1, -1, 0, 0}}};
-        //::matrix<float> final_matrix = mat * ::matrix<float>{{}};
+        //const ::matrix<float> mat{{{2, -3, 0, 1},
+        //                                 {-2, 3, 0, 0},
+        //                                 {1, -2, 1, 0},
+        //                                 {1, -1, 0, 0}}};
+        const ::matrix<float> mat{{{2, -2, 1, 1},
+                                   {-3, 3, -2, -1},
+                                   {0, 0, 1, 0},
+                                   {1, 0, 0, 0}}};
+        //::matrix<float> final_matrix = mat * ::matrix<float>{{{static_cast<float>(m_Points[0].x()), static_cast<float>(m_Points[0].y())},
+        //                                                      {static_cast<float>(m_Points[3].x()), static_cast<float>(m_Points[3].y())},
+        //                                                      {0, 1},
+        //                                                      {1, 0}}};
+        ::matrix<float> final_matrix = mat * ::matrix<float>{{{0, 0},
+                                                              {1, 0},
+                                                              {0, 1},
+                                                              {1, 0}}};
 
+        float max_diff = abs(m_Points[3].x() - m_Points[0].x());
+        float step = 1 / max_diff;
+        float t = 0;
+        for (int pixel_step = 0; pixel_step < max_diff; pixel_step++)
+        {
+            t += step;
+            ::matrix<float> step_matrix{{{t*t*t, t*t, t, 1}}};
+            ::matrix<float> point = step_matrix * final_matrix;
+            float first_coff = point.mat[0][0];
+            float second_coff = point.mat[0][1];
+            painter->drawPoint(first_coff * max_diff, second_coff * max_diff);
+        }
     }
     else if (m_Algorithm == ECurveAlgo::BEZJE)
     {
