@@ -10,12 +10,12 @@
 
 Curve::Curve(QObject *parent, ECurveAlgo algorithm)
     :QObject(parent),
-    m_Algorithm(algorithm),
-    m_Points({{-10,-10},
-              {-10, 10},
-              {10, 10},
-              {10, -10}})
+    m_Algorithm(algorithm)
 {
+    m_Points = {{-10,-10},
+                {-10, 10},
+                {10, 10},
+                {10, -10}};
     acceptHoverEvents();
 }
 
@@ -67,7 +67,7 @@ void Curve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             ::matrix<float> point = step_matrix * final_matrix;
             float first_coff = point.mat[0][0];
             float second_coff = point.mat[0][1];
-            painter->drawPoint(first_coff * max_diff, second_coff * max_diff);
+            painter->drawPoint(pixel_step, second_coff * max_diff);
         }
     }
     else if (m_Algorithm == ECurveAlgo::BEZJE)
@@ -106,6 +106,11 @@ void Curve::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if (m_IsMovingNow)
     {
+        if (m_MovingIndex == 0)
+        {
+            setPos(event->scenePos());
+            return;
+        }
         m_Points[m_MovingIndex] = event->pos();
     }
 }
